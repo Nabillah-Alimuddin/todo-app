@@ -29,7 +29,7 @@ function init() {
 function handleAddTodo(e) {
     e.preventDefault();
 
-    const text = todoInput.ariaValueMax.trim();
+    const text = todoInput.value.trim();
     if (text === '') {
         alert('Please enter a task!');
         return;
@@ -86,17 +86,17 @@ function createTodoElement(todo) {
 
     li.innerHTML = `
         <input
-            type=checkbox"
+            type="checkbox"
             class="todo-checkbox"
             ${todo.completed ? 'checked' : ''}
             >
-            <span class="todo-text">${todo-text}</span>
+            <span class="todo-text">${todo.text}</span>
             <button class="btn-delete">Delete</button>
             `;
         
         //event: toggle completion 
-            const checkbox = li.querySelector('.todo-checked');
-        checkbox.addEventListener('change', () => handleToggleTodo(todo.id));
+            const checkbox = li.querySelector('.todo-checkbox');
+            checkbox.addEventListener('change', () => handleToggleTodo(todo.id));
 
         //event: delete todo 
         const deleteBtn = li.querySelector('.btn-delete');
@@ -125,7 +125,7 @@ function handleDeleteTodo(id) {
 
     todos = todos.filter(todo => todo.id !== id);
 
-    saveTodosToStorage90;
+    saveTodosToStorage();
     renderTodos();
     updateTaskCount();
 }
